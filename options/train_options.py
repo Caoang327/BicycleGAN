@@ -28,5 +28,7 @@ class TrainOptions(BaseOptions):
         self.parser.add_argument('--lambda_GAN2', type=float, default=1.0, help='weight on D2 loss, D(G(A, random_z))')
         self.parser.add_argument('--lambda_z', type=float, default=0.5, help='weight for ||E(G(random_z)) - random_z||')
         self.parser.add_argument('--lambda_kl', type=float, default=0.01, help='weight for KL loss')
-        self.parser.add_argument('--use_same_D', action='store_true', help='if two Ds share the weights or not')
+        self.parser.add_argument('--use_same_D', action='store_false', help='if two Ds share the weights or not')
+        self.parser.add_argument('--use_feature_loss', type=bool,default=False, help='if use feature loss')
+        self.parser.add_argument('--feature_lambda', type=float,default=10, help='parameter for feature loss')
         self.isTrain = True
