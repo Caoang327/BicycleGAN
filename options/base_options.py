@@ -10,8 +10,8 @@ class BaseOptions():
         self.initialized = False
 
     def initialize(self):
-        self.parser.add_argument('--dataroot', required=True, help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
-        self.parser.add_argument('--batchSize', type=int, default=2, help='input batch size')
+        self.parser.add_argument('--dataroot', type=str, default="./dataset/AID++_2", help='path to images (should have subfolders trainA, trainB, valA, valB, etc)')
+        self.parser.add_argument('--batchSize', type=int, default=24, help='input batch size')
         self.parser.add_argument('--loadSize', type=int, default=286, help='scale images to this size')
         self.parser.add_argument('--fineSize', type=int, default=256, help='then crop to this size')
         self.parser.add_argument('--input_nc', type=int, default=3, help='# of input image channels')
@@ -43,15 +43,15 @@ class BaseOptions():
         self.parser.add_argument('--gan_mode', type=str, default='lsgan', help='dcgan|lsgan')
         self.parser.add_argument('--which_model_netD', type=str, default='basic_256_multi', help='selects model to use for netD')
         self.parser.add_argument('--which_model_netD2', type=str, default='basic_256_multi', help='selects model to use for netD')
-        self.parser.add_argument('--which_model_netG', type=str, default='unet_256', help='selects model to use for netG')
+        self.parser.add_argument('--which_model_netG', type=str, default='res_g', help='selects model to use for netG')
         self.parser.add_argument('--which_model_netE', type=str, default='resnet_256', help='selects model to use for netE')
         self.parser.add_argument('--norm', type=str, default='instance', help='instance normalization or batch normalization')
         self.parser.add_argument('--upsample', type=str, default='basic', help='basic | bilinear')
         self.parser.add_argument('--nl', type=str, default='relu', help='non-linearity activation: relu | lrelu | elu')
 
         # extra parameters
-        self.parser.add_argument('--where_add', type=str, default='all', help='input|all|middle; where to add z in the network G')
-        self.parser.add_argument('--conditional_D', action='store_true', help='if use conditional GAN for D')
+        self.parser.add_argument('--where_add', type=str, default='input', help='input|all|middle; where to add z in the network G')
+        self.parser.add_argument('--conditional_D', action='store_false', help='if use conditional GAN for D')
         self.parser.add_argument('--init_type', type=str, default='xavier', help='network initialization [normal|xavier|kaiming|orthogonal]')
         self.parser.add_argument('--center_crop', action='store_true', help='if apply for center cropping for the test')
         # special tasks
